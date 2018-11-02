@@ -1,7 +1,7 @@
 # room-admin
 
 ## view
-https://hbdoy.github.io/room-admin/
+https://wannabanana.github.io/admin/
 
 ## tools
 - [Materializecss](https://materializecss.com/)

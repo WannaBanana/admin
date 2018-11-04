@@ -103,8 +103,8 @@ function addNewCard(key) {
                 headers: {
                     "X-HTTP-Method-Override": "PATCH"
                 },
-                success: function (result) {
-                    console.log(result);
+                success: function (val) {
+                    console.log(val);
                     alert("驗證成功");
                     location.reload();
                 },

@@ -58,7 +58,7 @@ gulp.task('minify-html', function () {
         quotes: true
     };
     return gulp.src(config.paths.html.src)
-        .pipe(minifyHTML(opts))
+        // .pipe(minifyHTML(opts))
         .pipe(gulp.dest(config.dir.dest));
 });
 

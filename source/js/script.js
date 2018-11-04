@@ -3,6 +3,8 @@ $(document).ready(function () {
 
     var depart;
 
+    var doorStatus;
+
     var type = {
         m: '管理學院',
         h: '人文學院',
@@ -85,7 +87,7 @@ $(document).ready(function () {
                                                     <div class="switch">
                                                         <label>
                                                             門鎖
-                                                            <input type="checkbox" disabled ${checkDeviceStatus(element.equipment.doorLock.power)}>
+                                                            <input id="${key == 441? "openDoor":""}" ${key != 441? "disabled":key} type="checkbox" ${checkDoor(element.equipment.doorLock.lock)}>
                                                             <span class="lever"></span>
                                                             ${element.equipment.doorLock.door}/${element.equipment.doorLock.lock}
                                                         </label>
@@ -154,7 +156,7 @@ $(document).ready(function () {
                 }
             }
         }
-        if(str != ""){
+        if (str != "") {
             $("#allRoom").html(str);
         } else {
             $("#allRoom").html("<h4 class='red-text text-darken-2'>該院別沒有教室</h4>");
@@ -201,4 +203,78 @@ $(document).ready(function () {
             <span class="light-text">oooops</span>`;
         }
     }
+
+    function checkDoor(str) {
+        if (str == "上鎖") {
+            doorStatus = 0;
+            return "";
+        } else {
+            doorStatus = 1;
+            return "checked";
+        }
+    }
+
+    $(document).on('click', '#openDoor', function (e) {
+        var doorStatusText = ['開門', '關門'];
+        var doorMethod = ['open', 'close', 'temp'];
+        var time = 0;
+        var data = {};
+        if (!confirm(`是否要${doorStatusText[doorStatus]}?`)) {
+            e.preventDefault();
+            return;
+        }
+        // 由關到開
+        if (doorStatus == 0) {
+            var choice = prompt("0: 預設為常態開啟\n1: 限時開啟");
+            // temp
+            if (choice == 1) {
+                time = parseInt(prompt("請輸入開啟秒數:"));
+                if (time <= 0) {
+                    alert("請輸入大於0之秒數!");
+                    location.reload();
+                    return;
+                } else {
+                    // temp
+                    data = {
+                        method: doorMethod[2],
+                        delay: time * 1000
+                    }
+                }
+            } else if (choice == 0) {
+                // open
+                data = {
+                    method: doorMethod[doorStatus]
+                }
+            } else {
+                alert("請輸入正確選擇");
+                location.reload();
+                return;
+            }
+        }
+        // 由開到關
+        else if (doorStatus == 1) {
+            // close
+            data = {
+                method: doorMethod[doorStatus]
+            }
+        }
+        $.ajax({
+            url: `https://xxx/door`,
+            type: "POST",
+            data: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            },
+            success: function (result) {
+                console.log(result);
+                alert("執行成功");
+                location.reload();
+            },
+            error: function (error) {
+                console.log(error);
+                alert("發生錯誤，請稍後再試");
+                location.reload();
+            }
+        });
+    });
 });

@@ -112,7 +112,19 @@ $(document).ready(function () {
                                                         <div class="modal-content">
                                                             <h4>即時影像</h4>
                                                             <p>
-                                                                <iframe class="w100" src="${element.equipment.webcam}"></iframe>
+                                                                <video id="videoElement" width="100%"></video>
+                                                                <script>
+                                                                    if (flvjs.isSupported()) {
+                                                                        var videoElement = document.getElementById('videoElement');
+                                                                        var flvPlayer = flvjs.createPlayer({
+                                                                            type: 'flv',
+                                                                            url: 'http://163.22.32.200:8800/live/R441.flv'
+                                                                        });
+                                                                        flvPlayer.attachMediaElement(videoElement);
+                                                                        flvPlayer.load();
+                                                                        flvPlayer.play();
+                                                                    }
+                                                                </script>
                                                             </p>
                                                         </div>
                                                         <div class="modal-footer">

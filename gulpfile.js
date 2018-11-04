@@ -69,7 +69,7 @@ gulp.task('minify-img', function () {
 });
 
 gulp.task('default', ['clean'], function () {
-    gulp.start(['build', 'server']);
+    gulp.start(['build']);
 });
 
 gulp.task('build', ['minify-style', 'minify-script', 'minify-html', 'minify-img'], function () {

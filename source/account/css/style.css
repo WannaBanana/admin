@@ -48,3 +48,47 @@ tr label {
 .titlepadding {
     padding: 20px 0px;
 }
+
+
+/* authority management */
+#modal1 {
+    width: 500px;
+    border-radius: 10px;
+    height: 80%;
+}
+
+#modal1 span {
+    font-size: 30px;
+}
+
+.lineheight {
+    padding-bottom: 10px !important;
+    font-size: 20px !important;
+}
+
+.modalbtn {
+    border: 1px solid black;
+    background-color: Transparent !important;
+    color: black;
+    box-shadow: none;
+}
+
+.sendbtn {
+    padding-right: 10px !important;
+}
+
+#subBtn {
+    /* padding-right: 10px !important; */
+    border: none;
+    color: white;
+    background-color: #607d8b !important;
+    box-shadow:none;
+}
+
+.chip .material-icons.close {
+    display: none !important;
+}
+
+.chip{
+    cursor: pointer;
+}

@@ -1,0 +1,50 @@
+body {
+    font-family: '微軟正黑體';
+}
+
+.nav-wrapper {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+li a {
+    font-family: '微軟正黑體';
+}
+
+.text-right {
+    text-align: right;
+}
+
+.btn-text-blue {
+    color: #2196F3;
+}
+
+.btn-text-red {
+    color: #CC0000;
+}
+
+.btn-border {
+    border: 0.5px solid #d1d1d1;
+}
+
+.btn-width {
+    width: 80px;
+}
+
+.form-head-shadow {
+    box-shadow: -2px -1px 3px #d1d1d1;
+    -webkit-box-shadow: -2px -1px 3px #d1d1d1;
+    -moz-box-shadow: -2px -1px 3px #d1d1d1;
+    border-radius: 3px;
+}
+
+tr label {
+    padding-left: 10px;
+}
+
+[type="checkbox"]+span:not(.lever) {
+    padding-left: 10px !important;
+}
+
+.titlepadding {
+    padding: 20px 0px;
+}

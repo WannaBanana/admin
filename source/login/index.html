@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Admin Login Page</title>
+  <script src="../js/hash.js"></script>
+  <script>
+    checkLogin() ? window.location.href = '../index.html' : "";
+  </script>
+</head>
+<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Montserrat|Julius+Sans+One|Josefin+Slab|Josefin+Sans:300"
+  rel="stylesheet">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" type="text/css" href="../css/adminOutlook.css" />
+<script src="../js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<body>
+  <div class="row">
+    <form class="col l6 m6 s12 column-full valign-wrapper" id="register">
+      <div class="row">
+        <div class="input-field col l9 offset-l4 m9 offset-m2 s10 offset-s1">
+          <input id="account" type="text" class="validate" name="account" required autofocus>
+          <label for="account">Account</label>
+        </div>
+        <div class="input-field col l9 offset-l4 m9 offset-m2 s10 offset-s1">
+          <input id="password" type="password" class="validate" name="password">
+          <label for="password">Password</label>
+        </div>
+        <div class="input-field col l9 offset-l4 m9 offset-m2 s10 offset-s1 btnmargin">
+          <button class="btn button waves-effect" style="color: white;" id="loginBtn" />
+          Login
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div class="col l6 m6 s12 column-full valign-wrapper">
+      <div class="row">
+        <div class="col l12 offset-l3 m12 offset-m1 s12 offset-s2 card setcenter">
+          <div class="row">
+            <div class="col l12 m12 s12">
+              <img class="signinphoto" src="../img/minions.png" width="80px">
+              <br>
+              <span class="white-text cardtext">
+                We are<br>
+                <span class="cardtext2">WannaBanana !</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/my-login.js"></script>
+  <script>
+    //登入
+    var account = document.getElementById("account");
+    var pass = document.getElementById("password");
+    var loginBtn = document.getElementById("loginBtn");
+    var user;
+    loginBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (account.value != "" && pass.value != "") {
+        $.ajax({
+          url: `https://xn--pss23c41retm.tw/api/user/${account.value}`,
+          type: "POST",
+          data: {
+            password: pass.value
+          },
+          success: function (result) {
+            console.log(result);
+            if (result) {
+              setCookie("key", account.value, 6);
+              setCookie("value", sha256(account.value + s), 6);
+              setCookie("admin", result.admin, 6);
+              setCookie("space", result.space ? JSON.stringify(result.space) : "", 6);
+              window.location.href = './index.html';
+              console.log("驗證完成");
+            }
+          },
+          error: function (error) {
+            console.log(error);
+            alert("帳號或密碼錯誤");
+          }
+        });
+      } else {
+        alert("帳號密碼不得為空");
+      }
+    }, false);
+  </script>
+</body>
+
+</html>

@@ -56,7 +56,7 @@ $(document).ready(function () {
         for (const key in data) {
             console.log(key);
             if (data.hasOwnProperty(key)) {
-                if (getCookie("space") != "" && (JSON.parse(getCookie("space")))[depart] && (JSON.parse(getCookie("space")))[depart].indexOf(parseInt(key)) != -1) {
+                if (getCookie("space") != "" && (JSON.parse(getCookie("space")))[depart] && (JSON.parse(getCookie("space")))[depart].indexOf(key) != -1) {
                     const element = data[key];
                     str += `
                     <div class="col s12">

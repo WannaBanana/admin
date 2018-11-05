@@ -5,18 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>物品審核</title>
-    <script src="../../js/hash.js"></script>
+    <title>帳號管理</title>
+    <script src="../js/hash.js"></script>
+<<<<<<< HEAD:account/index.html
+    <!-- <script>
+        checkLogin() ? "" : window.location.href = '../adminlogin.html';
+    </script> -->
+=======
     <script>
-        checkLogin() ? "" : window.location.href = '../../adminlogin.html';
+        checkLogin() ? "" : window.location.href = '../login/index.html';
     </script>
+>>>>>>> e072e2a63d2370c3696995ee9825f0076210f264:source/account/index.html
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Montserrat|Julius+Sans+One|Josefin+Slab|Josefin+Sans:300"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    <link href='../../css/space.css' rel='stylesheet' />
-    <link href='../../css/navBar.css' rel='stylesheet' />
+    <link href='../css/space.css' rel='stylesheet' />
+    <link href='../css/navBar.css' rel='stylesheet' />
     <link href='./css/style.css' rel='stylesheet' />
-    <script src='../../js/jquery.min.js'></script>
+    <script src='../js/jquery.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -24,23 +30,23 @@
 <body>
     <!-- Dropdown Structure -->
     <ul id="item" class="dropdown-content">
-        <li><a href="../index.html">狀態</a></li>
-        <li><a href="./index.html">審核</a></li>
+        <li><a href="../item/index.html">狀態</a></li>
+        <li><a href="../item/item-vali/index.html">審核</a></li>
     </ul>
     <ul id="room" class="dropdown-content">
-        <li><a href="../../index.html">狀態</a></li>
-        <li><a href="../../room-vali/index.html">審核</a></li>
+        <li><a href="../index.html">狀態</a></li>
+        <li><a href="../room-vali/index.html">審核</a></li>
     </ul>
     <nav>
         <div class="nav-wrapper px-md-2 bg-gradient-level">
-            <a href="#!" class="brand-logo">
-                <img class="d-none-sm" src="../../img/minions.png" width="30px">
+            <a href="../index.html" class="brand-logo">
+                <img class="d-none-sm" src="../img/minions.png" width="30px">
                 WannaBanana
             </a>
             <a href="#" data-target="myNavBar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#!"><i class="material-icons">person</i></a></li>
-                <li><a href="../../account/index.html">帳號管理</a></li>
+                <li><a href="./index.html">帳號管理</a></li>
                 <li><a class="dropdown-trigger" href="#!" data-target="item">物品管理<i class="material-icons right">arrow_drop_down</i></a></li>
                 <li><a class="dropdown-trigger" href="#!" data-target="room">教室管理<i class="material-icons right">arrow_drop_down</i></a></li>
                 <li><a href="#" onclick="logout()">登出</a></li>
@@ -49,16 +55,16 @@
     </nav>
     <!-- Dropdown Structure -->
     <ul id="item-rwd" class="dropdown-content">
-        <li><a href="../index.html">狀態</a></li>
-        <li><a href="./index.html">審核</a></li>
+        <li><a href="../item/index.html">狀態</a></li>
+        <li><a href="../item/item-vali/index.html">審核</a></li>
     </ul>
     <ul id="room-rwd" class="dropdown-content">
-        <li><a href="../../index.html">狀態</a></li>
-        <li><a href="../../room-vali/index.html">審核</a></li>
+        <li><a href="../index.html">狀態</a></li>
+        <li><a href="../room-vali/index.html">審核</a></li>
     </ul>
     <ul class="sidenav bg-gradient" id="myNavBar">
         <li style="background-color: #AFACD4"><a href="#"><i class="material-icons white-text">person</i></a></li>
-        <li class="text-center"><a href="../../account/index.html">帳號管理</a></li>
+        <li class="text-center"><a href="./index.html">帳號管理</a></li>
         <li class="text-center"><a class="dropdown-trigger" href="#!" data-target="item-rwd">物品管理<i class="material-icons right">arrow_drop_down</i></a></li>
         <li class="text-center"><a class="dropdown-trigger" href="#!" data-target="room-rwd">教室管理<i class="material-icons right">arrow_drop_down</i></a></li>
         <li class="text-center"><a href="#!" onclick="logout()">登出</a></li>
@@ -66,12 +72,13 @@
 
     <div class="container">
         <div class="row titlepadding">
-            <h4>物品審核</h4>
+            <h4>帳號管理</h4>
             <div class="divider"></div>
         </div>
         <div class="row">
             <div class="col-s12 text-md-right text-sm-left mb-1">
-                <a class="waves-effect btn grey white-text btn-width">通過</a>
+                <a class="waves-effect btn grey white-text btn-width">新增</a>
+                <a class="waves-effect btn grey white-text btn-width">修改</a>
                 <a class="waves-effect btn grey white-text btn-width">刪除</a>
             </div>
             <div class="col s12">
@@ -85,16 +92,16 @@
                                         <span>　</span>
                                     </label>
                                 </th>
-                                <th>編號</th>
-                                <th>分類</th>
-                                <th>名稱</th>
-                                <th>借用期間</th>
-                                <th>借用人</th>
-                                <th>操作</th>
+                                <th>學號</th>
+                                <th>姓名</th>
+                                <th>信箱</th>
+                                <th>身份</th>
+                                <th>狀態</th>
+                                <th>設定</th>
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody id="table-content">
                             <tr>
                                 <td>
                                     <label>
@@ -102,13 +109,13 @@
                                         <span>　</span>
                                     </label>
                                 </td>
-                                <td>001</td>
-                                <td>鑰匙</td>
-                                <td>管院鑰匙-1</td>
-                                <td>2018/10/22~2018/10/23</td>
-                                <td>Ray</td>
+                                <td>104213046</td>
+                                <td>李禹叡</td>
+                                <td>s104213046@mail1.ncnu.edu.tw</td>
+                                <td>管理員</td>
+                                <td></td>
                                 <td>
-                                    <a href="#">修改</a>
+                                    <a href="#">權限設定</a>
                                 </td>
                             </tr>
                             <tr>
@@ -118,13 +125,13 @@
                                         <span>　</span>
                                     </label>
                                 </td>
-                                <td>002</td>
-                                <td>延長線</td>
-                                <td>延長線-9</td>
-                                <td>2018/10/22~2018/10/23</td>
+                                <td>103213009</td>
+                                <td>歐陽俊傑</td>
+                                <td>s103213009@mail1.ncnu.edu.tw</td>
+                                <td>學生</td>
                                 <td>Ray</td>
                                 <td>
-                                    <a href="#">修改</a>
+                                    <a href="#">權限設定</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -137,18 +144,32 @@
                                         <span>　</span>
                                     </label>
                                 </th>
-                                <th>編號</th>
-                                <th>分類</th>
-                                <th>名稱</th>
-                                <th>借用期間</th>
-                                <th>借用人</th>
-                                <th>操作</th>
+                                <th>學號</th>
+                                <th>姓名</th>
+                                <th>信箱</th>
+                                <th>身份</th>
+                                <th>狀態</th>
+                                <th>設定</th>
                             </tr>
                         </thead>
                     </form>
                 </table>
 
             </div>
+        </div>
+    </div>
+
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <div style="padding-bottom:30px">
+                <span>權限管理</span>
+            </div>
+            <div id="department">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
         </div>
     </div>
     <script src="./js/script.js"></script>

@@ -134,5 +134,5 @@ var logout = () => {
     setCookie("value", "", -1);
     setCookie("admin", "", -1);
     setCookie("space", "", -1);
-    window.location.href = '../index.html';
+    location.reload();
 }

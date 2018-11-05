@@ -126,7 +126,7 @@ function getCookie(cname) {
     return "";
 }
 
-var checkLogin = () => sha256(getCookie("key") + s) === getCookie("value");
+var checkLogin = () => sha256(getCookie("key") + s) === getCookie("value") && getCookie("admin") == true;
 
 
 var logout = () => {

@@ -69,7 +69,7 @@ gulp.task('minify-img', function () {
 });
 
 gulp.task('default', ['clean'], function () {
-    gulp.start(['build']);
+    gulp.start(['build', 'server']);
 });
 
 gulp.task('build', ['minify-style', 'minify-script', 'minify-html', 'minify-img'], function () {
@@ -79,4 +79,6 @@ gulp.task('build', ['minify-style', 'minify-script', 'minify-html', 'minify-img'
         }));
 });
 
-gulp.task('deploy', ['ghpages']);
+gulp.task('deploy', ['clean'], function () {
+    gulp.start(['ghpages']);
+});

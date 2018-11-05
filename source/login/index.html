@@ -77,13 +77,15 @@
           },
           success: function (result) {
             console.log(result);
-            if (result) {
+            if (result && result.admin == true) {
               setCookie("key", account.value, 6);
               setCookie("value", sha256(account.value + s), 6);
               setCookie("admin", result.admin, 6);
               setCookie("space", result.space ? JSON.stringify(result.space) : "", 6);
               window.location.href = './index.html';
               console.log("驗證完成");
+            } else {
+              alert("請使用管理員帳號登入");
             }
           },
           error: function (error) {

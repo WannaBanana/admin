@@ -53,8 +53,8 @@ label {
 }
 
 .input-field input {
-  border-bottom: 0px solid white !important;
-  box-shadow: 0 1px 0 0 white !important;
+  border-bottom: 1px solid white !important;
+  box-shadow: 0 0px 0 0 white !important;
 }
 
 @media only screen and (max-width: 1200px) {

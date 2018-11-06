@@ -212,10 +212,10 @@ $(document).ready(function () {
     function checkDoor(str) {
         if (str == "上鎖") {
             doorStatus = 0;
-            return "";
+            return "checked";
         } else {
             doorStatus = 1;
-            return "checked";
+            return "";
         }
     }
 

@@ -81,10 +81,6 @@ $(document).ready(function () {
                                             </span>
                                             <div class="row mb-0">
                                                 <div class="col s12 m6">
-                                                    <label>借用人: Bob</label>
-                                                    <label>借用期間: 2018/10/18</label>
-                                                </div>
-                                                <div class="col s12 m6">
                                                     <div class="switch">
                                                         <label>
                                                             門鎖
@@ -108,6 +104,7 @@ $(document).ready(function () {
                                                         </label>
                                                     </div>
                                                 </div>
+                                                <div class="col s12 m6" id="userLog"></div>
                                                 <div class="col s12 my-1 divider"></div>
                                                 <div class="col s6 m3 offset-m6">
                                                     <a href="#cam${key}" class="btn waves-effect waves-light w100 modal-trigger">即時影像</a>
@@ -159,6 +156,7 @@ $(document).ready(function () {
         }
         if (str != "") {
             $("#allRoom").html(str);
+            checkBorrowTime();
         } else {
             $("#allRoom").html("<h4 class='red-text text-darken-2'>該院別沒有教室</h4>");
         }
@@ -217,6 +215,43 @@ $(document).ready(function () {
             doorStatus = 1;
             return "";
         }
+    }
+
+    function checkBorrowTime(){
+        $.ajax({
+            url: `https://xn--pss23c41retm.tw/api/reservation/%E7%AE%A1%E7%90%86%E5%AD%B8%E9%99%A2/441`,
+            type: "GET",
+            success: function (result) {
+                console.log(result);
+                for(const key in result){
+                    var element = result[key];
+                    for (const inner_key in element) {
+                        if (element.hasOwnProperty(inner_key)) {
+                            const inner_element = element[inner_key];
+                            var start = new Date(inner_element.start);
+                            var end = new Date(inner_element.end);
+                            var now = new Date();
+                            if(start < now && now < end){
+                                console.log(start, now, end);
+                                $("#userLog").html(`
+                                <label>借用人: ${inner_element.name}</label>
+                                <label>借用期間: ${ISOtoLocal(inner_element.start)}</label>
+                                <label>借用期間: ~${ISOtoLocal(inner_element.end)}</label>
+                                `);
+                            }
+                        }
+                    }
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    function ISOtoLocal(time){
+        var tmp = new Date(time);
+        return `${tmp.getYear()+1900}/${tmp.getMonth()+1}/${tmp.getDay()} ${tmp.getHours()}:${tmp.getMinutes()}`;
     }
 
     $(document).on('click', '#openDoor', function (e) {

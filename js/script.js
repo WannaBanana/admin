@@ -266,7 +266,7 @@ $(document).ready(function () {
             }
         }
         $.ajax({
-            url: `https://${doorAddr}:3000/door`,
+            url: `http://${doorAddr}:3000/door`,
             type: "POST",
             data: JSON.stringify(data),
             headers: {
@@ -281,7 +281,7 @@ $(document).ready(function () {
             error: function (error) {
                 console.log(error);
                 alert("發生錯誤，請稍後再試");
-                location.reload();
+                // location.reload();
             }
         });
     });
@@ -324,7 +324,7 @@ $(document).ready(function () {
             return;
         }
         $.ajax({
-            url: `https://${doorAddr}:3000/${type}`,
+            url: `http://${doorAddr}:3000/${type}`,
             type: active,
             headers: {
                 "X-HTTP-Method-Override": active

@@ -200,9 +200,8 @@ function permission(result, val) {
         `;
         $(".modal-footer").html(`
         <div class="sendbtn">
-        <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
-        <button id="subBtn" class="btn waves-effect">
-        Send</button>
+            <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
+        </div>
         `);
         $(`#department`).html(str);
         $('.other-chips').chips();
@@ -257,9 +256,8 @@ function permission(result, val) {
             `;
             $(".modal-footer").html(`
             <div class="sendbtn">
-            <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
-            <button id="subBtn" class="btn waves-effect">
-            Send</button>
+                <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
+            </div>
             `);
         }
     }

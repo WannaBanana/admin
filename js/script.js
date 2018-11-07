@@ -118,7 +118,7 @@ $(document).ready(function () {
                                                                         var videoElement = document.getElementById('videoElement');
                                                                         var flvPlayer = flvjs.createPlayer({
                                                                             type: 'flv',
-                                                                            url: 'http://163.22.32.200:8800/live/R441.flv'
+                                                                            url: 'https://jjwang.tw:8800/live/R441.flv'
                                                                         });
                                                                         flvPlayer.attachMediaElement(videoElement);
                                                                         flvPlayer.load();

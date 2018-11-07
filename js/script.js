@@ -50,6 +50,17 @@ $(document).ready(function () {
                 $("#msgText").html(`<h4 class="red-text text-darken-2">伺服器發生錯誤，請稍後再試</h4>`);
             }
         });
+        $.ajax({
+            url: `https://xn--pss23c41retm.tw/reverseProxy/snapshot`,
+            type: "GET",
+            success: function (data) {
+                // console.log(data);
+                $("#roomImg").attr('src', data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
     }
 
     function render(data) {
@@ -67,7 +78,7 @@ $(document).ready(function () {
                             <div class="row">
                                 <div class="col s12 m4 pr-md-0">
                                     <div class="card-image">
-                                        <img src="./img/1.jpeg">
+                                        <img id="roomImg" src="./img/1.jpeg">
                                     </div>
                                 </div>
                                 <div class="col s12 m8 pl-md-0">

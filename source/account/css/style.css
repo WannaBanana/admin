@@ -92,3 +92,7 @@ tr label {
 .chip{
     cursor: pointer;
 }
+
+.rightbtn {
+    margin-right: 12px;
+}

@@ -72,3 +72,15 @@ td .row > .input-field {
 .titlepadding {
     padding: 20px 0px;
 }
+
+.rightbtn {
+    margin-right: 12px;
+}
+
+#editForm {
+    max-width: 350px;
+}
+
+#editBtn, #addBtn {
+    margin-right: 10px;
+}

@@ -49,6 +49,6 @@ tr label {
     padding: 20px 0px;
 }
 
-li a {
-    font-family: '微軟正黑體';
+.rightbtn {
+    margin-right: 12px;
 }

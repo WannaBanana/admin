@@ -251,7 +251,7 @@ $(document).ready(function () {
 
     function ISOtoLocal(time){
         var tmp = new Date(time);
-        return `${tmp.getYear()+1900}/${tmp.getMonth()+1}/${tmp.getDay()} ${tmp.getHours()}:${tmp.getMinutes()}`;
+        return `${tmp.getYear()+1900}/${tmp.getMonth()+1}/${tmp.getDate()} ${tmp.getHours()}:${tmp.getMinutes()}`;
     }
 
     $(document).on('click', '#openDoor', function (e) {

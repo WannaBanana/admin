@@ -48,7 +48,7 @@ $(document).ready(function () {
         } else {
             var tmp = [];
             for (var i = 0; i < all.length; i++) {
-                tmp.push(delRoom(all[i].value));
+                tmp.push(delItem(all[i].value));
             }
             if (!confirm(`確定要刪除${tmp.length}筆資料?`)) {
                 return;
@@ -64,6 +64,30 @@ $(document).ready(function () {
                 })
         }
     });
+
+    function delItem(key) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: `https://xn--pss23c41retm.tw/api/item/reservation/管理學院/441/${key}`,
+                type: "DELETE",
+                data: JSON.stringify({
+                    "deleteRepeat": false
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-HTTP-Method-Override": "DELETE"
+                },
+                success: function () {
+                    resolve(key + " 刪除成功");
+                },
+                error: function (error) {
+                    console.log(key + "\n");
+                    console.log(error.responseJSON.message);
+                    reject(error.responseJSON.message);
+                }
+            });
+        });
+    }
 
     $(".checkAll1").click(function () {
         if ($(".checkAll1").prop("checked")) { //如果全選按鈕有被選擇的話（被選擇是true）

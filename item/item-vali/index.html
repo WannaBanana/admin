@@ -71,81 +71,47 @@
         </div>
         <div class="row">
             <div class="col-s12 text-md-right text-sm-left mb-1">
-                <a class="waves-effect btn grey white-text btn-width">通過</a>
-                <a class="waves-effect btn grey white-text btn-width">刪除</a>
+                <a id="addBtn" class="waves-effect btn grey white-text btn-width">通過</a>
+                <a id="delBtn" class="waves-effect btn grey white-text btn-width rightbtn">刪除</a>
             </div>
             <div class="col s12">
                 <table class="striped highlight responsive-table">
-                    <form action="#">
-                        <thead class="btn-border form-head-shadow">
-                            <tr>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" class="checkAll1" />
-                                        <span>　</span>
-                                    </label>
-                                </th>
-                                <th>編號</th>
-                                <th>分類</th>
-                                <th>名稱</th>
-                                <th>借用期間</th>
-                                <th>借用人</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
 
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label>
-                                        <input type="checkbox" name="room-checkbox[]" value="456" />
-                                        <span>　</span>
-                                    </label>
-                                </td>
-                                <td>001</td>
-                                <td>鑰匙</td>
-                                <td>管院鑰匙-1</td>
-                                <td>2018/10/22~2018/10/23</td>
-                                <td>Ray</td>
-                                <td>
-                                    <a href="#">修改</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>
-                                        <input type="checkbox" name="room-checkbox[]" value="789" />
-                                        <span>　</span>
-                                    </label>
-                                </td>
-                                <td>002</td>
-                                <td>延長線</td>
-                                <td>延長線-9</td>
-                                <td>2018/10/22~2018/10/23</td>
-                                <td>Ray</td>
-                                <td>
-                                    <a href="#">修改</a>
-                                </td>
-                            </tr>
-                        </tbody>
-
-                        <thead class="d-none-sm form-head-shadow btn-border">
-                            <tr>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" class="checkAll2" />
-                                        <span>　</span>
-                                    </label>
-                                </th>
-                                <th>編號</th>
-                                <th>分類</th>
-                                <th>名稱</th>
-                                <th>借用期間</th>
-                                <th>借用人</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                    </form>
+                    <thead class="btn-border form-head-shadow">
+                        <tr>
+                            <th>
+                                <label>
+                                    <input type="checkbox" class="checkAll1" />
+                                    <span>　</span>
+                                </label>
+                            </th>
+                            <th>編號</th>
+                            <th>日期</th>
+                            <th>起始時間</th>
+                            <th>結束時間</th>
+                            <th>借用人</th>
+                            <th>用途</th>
+                            <th>重複</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-content"></tbody>
+                    <thead class="d-none-sm form-head-shadow btn-border">
+                        <tr>
+                            <th>
+                                <label>
+                                    <input type="checkbox" class="checkAll2" />
+                                    <span>　</span>
+                                </label>
+                            </th>
+                            <th>編號</th>
+                            <th>日期</th>
+                            <th>起始時間</th>
+                            <th>結束時間</th>
+                            <th>借用人</th>
+                            <th>用途</th>
+                            <th>重複</th>
+                        </tr>
+                    </thead>
                 </table>
 
             </div>

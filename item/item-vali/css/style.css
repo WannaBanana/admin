@@ -48,3 +48,7 @@ tr label {
 .titlepadding {
     padding: 20px 0px;
 }
+
+.rightbtn {
+    margin-right: 12px;
+}

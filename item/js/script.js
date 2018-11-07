@@ -67,7 +67,7 @@ $(document).ready(function () {
         console.log(formData);
         var bool = false;
         var formObj = {};
-        if(formData.length != 6) {
+        if (formData.length != 6) {
             alert("所有欄位皆須填寫");
             return;
         }
@@ -206,25 +206,25 @@ $(document).ready(function () {
         editTmpData.itemRule = itemRule[0].innerText;
         // console.log(itemType[0].innerText);
         $("#myForm2").html(`
-            <div class="input-field col s12 m8">
+            <div class="input-field col s12 m12">
                 <select name="itemType">
                     <option value="" disabled>Choose your option</option>
-                    <option value="3C" ${editTmpData.itemType == "3C"? "selected":""}>3C</option>
-                    <option value="文具" ${editTmpData.itemType == "文具"? "selected":""}>文具</option>
-                    <option value="鑰匙" ${editTmpData.itemType == "鑰匙"? "selected":""}>鑰匙</option>
-                    <option value="器材" ${editTmpData.itemType == "器材"? "selected":""}>器材</option>
+                    <option value="3C" ${editTmpData.itemType == "3C" ? "selected" : ""}>3C</option>
+                    <option value="文具" ${editTmpData.itemType == "文具" ? "selected" : ""}>文具</option>
+                    <option value="鑰匙" ${editTmpData.itemType == "鑰匙" ? "selected" : ""}>鑰匙</option>
+                    <option value="器材" ${editTmpData.itemType == "器材" ? "selected" : ""}>器材</option>
                 </select>
                 <label>物品類型</label>
             </div>
-            <div class="input-field col s12 m8">
+            <div class="input-field col s12 m12">
                 <input id="itemName2" name="itemName" type="text" value="${editTmpData.itemName}">
                 <label for="itemName2" class="active">物品名稱</label>
             </div>
-            <div class="input-field col s12 m8">
+            <div class="input-field col s12 m12">
                 <select name="itemRule">
                     <option value="" disabled>Choose your option</option>
-                    <option value="靜態資產" ${editTmpData.itemRule == "靜態資產"? "selected":""}>靜態資產</option>
-                    <option value="動態資產" ${editTmpData.itemRule  == "動態資產"? "selected":""}>動態資產</option>
+                    <option value="靜態資產" ${editTmpData.itemRule == "靜態資產" ? "selected" : ""}>靜態資產</option>
+                    <option value="動態資產" ${editTmpData.itemRule == "動態資產" ? "selected" : ""}>動態資產</option>
                 </select>
                 <label>物品規則</label>
             </div>

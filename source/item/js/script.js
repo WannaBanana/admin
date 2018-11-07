@@ -45,8 +45,6 @@ $(document).ready(function () {
                         <td id="${final_key}Name">${final_element.itemName}</td>
                         <td id="${final_key}Rule">${final_element.itemRule}</td>
                         <td class="${itemStatus(final_element.state)}">${final_element.state}</td>
-                        <td>hahaha</td>
-                        <td>hahaha</td>
                         <td>
                             <a href="#" class="editBtn btn-text-blue" data-key="${final_key + "&" + inner_key + "&" + key}">修改</a>
                             <a href="#" class="delBtn btn-text-red" data-key="${final_key + "&" + inner_key + "&" + key}">刪除</a>

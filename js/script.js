@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     var depart;
 
-    var doorStatus, rfidStatus, glassStatus, doorAddr;
+    var doorStatus, rfidStatus, glassStatus;
 
     var type = {
         m: '管理學院',
@@ -71,7 +71,6 @@ $(document).ready(function () {
             if (data.hasOwnProperty(key)) {
                 if (getCookie("space") != "" && (JSON.parse(getCookie("space")))[depart] && (JSON.parse(getCookie("space")))[depart].indexOf(key) != -1) {
                     const element = data[key];
-                    key == 441? doorAddr=element.address:"";
                     str += `
                     <div class="col s12">
                         <div class="card">
@@ -312,7 +311,7 @@ $(document).ready(function () {
             }
         }
         $.ajax({
-            url: `http://${doorAddr}:3000/door`,
+            url: `https://xn--pss23c41retm.tw/reverseProxy/door`,
             type: "POST",
             data: JSON.stringify(data),
             headers: {
@@ -370,7 +369,7 @@ $(document).ready(function () {
             return;
         }
         $.ajax({
-            url: `http://${doorAddr}:3000/${type}`,
+            url: `https://xn--pss23c41retm.tw/reverseProxy/${type}`,
             type: active,
             headers: {
                 "X-HTTP-Method-Override": active

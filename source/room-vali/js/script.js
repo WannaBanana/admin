@@ -123,9 +123,9 @@ $(document).ready(function () {
                             </form>
                         </td>
                         <td>${key}</td>
-                        <td>${final_element.start.slice(0, 10)}</td>
-                        <td>${final_element.start.slice(11, 16)}</td>
-                        <td>${final_element.end.slice(11, 16)}</td>
+                        <td>${new Date(final_element.start).toLocaleDateString()}</td>
+                        <td>${new Date(final_element.start).toLocaleTimeString().replace(":00", "")}</td>
+                        <td>${new Date(final_element.end).toLocaleTimeString().replace(":00", "")}</td>
                         <td>${final_element.name}</td>
                         <td>${final_element.type == "inside"? "校內用途: " + final_element.title:"校外用途: " + final_element.title}</td>
                         <td>${final_element.repeat_type? final_element.repeat_type:"無"}</td>

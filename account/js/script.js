@@ -120,13 +120,18 @@ function addNewCard(key) {
     //         alert(error.responseJSON.message);
     //     }
     // });
-    validateAccount(key);
+    if (confirm("是否進行認證?")) {
+        validateAccount(key);
+    }
 }
 
-function validateAccount(key){
+function validateAccount(key) {
     $.ajax({
         url: `https://xn--pss23c41retm.tw/api/register/verify/${key}`,
-        type: "POST",
+        type: "PATCH",
+        headers: {
+            "X-HTTP-Method-Override": "PATCH"
+        },
         success: function (result) {
             console.log(result);
             alert("驗證成功");
@@ -182,7 +187,6 @@ function permission(result, val) {
                 if(confirm("是否要刪除" + e.target.innerText.replace("close", "") + '?')){
                     delRoom(e.target.innerText.replace("close", "").replace(/\\n/, ""), ${val});
                 }
-                
             })
             </script>
         </div>
@@ -214,7 +218,9 @@ function permission(result, val) {
             const inner_element = element[inner_key];
             for (i = 0; i < inner_element.length; i++) {
                 // chipdata += `{ tag: '${inner_element[i]}', },`;
-                chipdata.push({ 'tag': inner_element[i].toString() });
+                chipdata.push({
+                    'tag': inner_element[i].toString()
+                });
             }
             console.log(JSON.stringify(chipdata));
             str += `

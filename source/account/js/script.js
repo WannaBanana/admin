@@ -114,22 +114,26 @@ function addNewCard(key) {
         }),
         success: function (result) {
             console.log(result);
-            $.ajax({
-                url: `https://xn--pss23c41retm.tw/api/register/verify/${key}`,
-                type: "PATCH",
-                headers: {
-                    "X-HTTP-Method-Override": "PATCH"
-                },
-                success: function (result) {
-                    console.log(result);
-                    alert("驗證成功");
-                    location.reload();
-                },
-                error: function (error) {
-                    console.log(error);
-                    alert(error.responseJSON.message);
-                }
-            });
+            validateAccount(key);
+        },
+        error: function (error) {
+            console.log(error);
+            alert(error.responseJSON.message);
+        }
+    });
+}
+
+function validateAccount(key){
+    $.ajax({
+        url: `https://xn--pss23c41retm.tw/api/register/verify/${key}`,
+        type: "PATCH",
+        headers: {
+            "X-HTTP-Method-Override": "PATCH"
+        },
+        success: function (result) {
+            console.log(result);
+            alert("驗證成功");
+            location.reload();
         },
         error: function (error) {
             console.log(error);

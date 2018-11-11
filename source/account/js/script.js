@@ -126,10 +126,7 @@ function addNewCard(key) {
 function validateAccount(key){
     $.ajax({
         url: `https://xn--pss23c41retm.tw/api/register/verify/${key}`,
-        type: "PATCH",
-        headers: {
-            "X-HTTP-Method-Override": "PATCH"
-        },
+        type: "POST",
         success: function (result) {
             console.log(result);
             alert("驗證成功");

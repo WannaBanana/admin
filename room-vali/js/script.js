@@ -83,13 +83,18 @@ $(document).ready(function () {
                 $(".checkAll1").prop("checked", false);
             }
         })
+        $("#bookType").change(function(){
+            console.log(this.value);
+            getData(this.value);
+        });
     }
     eventBind();
 
-    function getData() {
+    function getData(val) {
+        var type = ["book/管理學院", "管理學院"];
         $(`#table-content`).html(`<h4 class="grey-text text-darken-2">載入中...</h4>`);
         $.ajax({
-            url: `https://xn--pss23c41retm.tw/api/reservation/book/管理學院`,
+            url: `https://xn--pss23c41retm.tw/api/reservation/${type[val]}`,
             type: "GET",
             success: function (result) {
                 console.log(result);
@@ -101,7 +106,7 @@ $(document).ready(function () {
             }
         });
     }
-    getData();
+    getData(0);
 
     function render(result) {
         var str = "";

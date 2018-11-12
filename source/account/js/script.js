@@ -198,11 +198,14 @@ function getPermission(val) {
 // getPermission();
 
 function permission(result, val) {
-    var str = "";
+    var str = `
+    <div class="lineheight">
+        ${adminBtn(result.admin, val)}
+    </div>`;
     // var chipdata = "";
     var chipdata = [];
     if (!result.space) {
-        str = `
+        str += `
         <div class="lineheight">
             管理學院
             <div id="m-${val}" class="chips chips-initial">
@@ -305,6 +308,34 @@ function permission(result, val) {
     }
     $(`#department`).html(str);
     $('.other-chips').chips();
+}
+
+function adminBtn(admin, val) {
+    if (admin == true) {
+        return `<button class="btn waves-effect red" onclick="adminOperate(${val}, 1)">移除管理員</button>`;
+    } else if (admin == false) {
+        return `<button class="btn waves-effect" onclick="adminOperate(${val}, 0)">提升管理員</button>`;
+    }
+}
+
+function adminOperate(val, type) {
+    const method = ['POST', 'DELETE'];
+    if (!confirm("確定要執行操作嗎?")) {
+        return;
+    }
+    $.ajax({
+        url: `https://xn--pss23c41retm.tw/api/permission/admin/${val}`,
+        type: method[type],
+        success: function (result) {
+            console.log(result);
+            alert(result.message);
+            location.reload();
+        },
+        error: function (error) {
+            console.log(error);
+            alert(error.message);
+        }
+    });
 }
 
 function addNewPermiss(key, data) {

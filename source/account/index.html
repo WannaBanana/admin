@@ -74,7 +74,7 @@
             <div class="col-s12 text-md-right text-sm-left mb-1">
                 <a class="waves-effect btn grey white-text btn-width">新增</a>
                 <a class="waves-effect btn grey white-text btn-width">修改</a>
-                <a class="waves-effect btn grey white-text btn-width rightbtn">刪除</a>
+                <a id="delBtn" class="waves-effect btn grey white-text btn-width rightbtn">刪除</a>
             </div>
             <div class="col s12">
                 <table class="striped highlight responsive-table">
@@ -96,40 +96,7 @@
                             </tr>
                         </thead>
 
-                        <tbody id="table-content">
-                            <tr>
-                                <td>
-                                    <label>
-                                        <input type="checkbox" name="room-checkbox[]" value="456" />
-                                        <span>　</span>
-                                    </label>
-                                </td>
-                                <td>104213046</td>
-                                <td>李禹叡</td>
-                                <td>s104213046@mail1.ncnu.edu.tw</td>
-                                <td>管理員</td>
-                                <td></td>
-                                <td>
-                                    <a href="#">權限設定</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>
-                                        <input type="checkbox" name="room-checkbox[]" value="789" />
-                                        <span>　</span>
-                                    </label>
-                                </td>
-                                <td>103213009</td>
-                                <td>歐陽俊傑</td>
-                                <td>s103213009@mail1.ncnu.edu.tw</td>
-                                <td>學生</td>
-                                <td>Ray</td>
-                                <td>
-                                    <a href="#">權限設定</a>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tbody id="table-content"></tbody>
 
                         <thead class="d-none-sm form-head-shadow btn-border">
                             <tr>

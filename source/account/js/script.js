@@ -3,8 +3,6 @@ $(document).ready(function () {
     $('.chips').chips();
     M.AutoInit();
 
-    var studentID = "";
-
     function eventBind() {
         $(document).change(function () {
             var all = $("#test").serializeArray();
@@ -28,6 +26,30 @@ $(document).ready(function () {
                 $(".checkAll1").prop("checked", false);
             }
         })
+        $("#delBtn").click(function () {
+            var all = $(".checkboxForm").serializeArray();
+            console.log(all);
+            if (all.length <= 0) {
+                alert("請先選取帳號");
+            } else {
+                var tmp = [];
+                for (var i = 0; i < all.length; i++) {
+                    tmp.push(delAccount(all[i].value, prompt(`請輸入 ${all[i].value} 密碼:`)));
+                }
+                if (!confirm(`確定要刪除${tmp.length}筆帳號?`)) {
+                    return;
+                }
+                Promise.all(tmp)
+                    .then((val) => {
+                        console.log(val);
+                        alert("刪除成功");
+                        location.reload();
+                    })
+                    .catch((err) => {
+                        $(`#table-content`).html(`<h4 class="red-text text-darken-2">${err == ""? "伺服器發生問題，請稍後再試":error}</h4>`);
+                    })
+            }
+        });
     }
     eventBind();
 
@@ -48,8 +70,6 @@ $(document).ready(function () {
     }
     getData();
 
-
-
     function render(result) {
         var str = "";
         for (const key in result) {
@@ -59,10 +79,12 @@ $(document).ready(function () {
                 str += `
                 <tr>
                     <td>
-                        <label>
-                            <input type="checkbox" name="room-checkbox[]" value="${inner_key}" />
-                            <span>　</span>
-                        </label>
+                        <form class="checkboxForm">
+                            <label>
+                                <input type="checkbox" name="room-checkbox[]" value="${inner_key}" />
+                                <span>　</span>
+                            </label>
+                        </form>
                     </td>
                     <td>${inner_key}</td>
                     <td>${inner_element.name}</td>
@@ -70,8 +92,7 @@ $(document).ready(function () {
                     <td>${inner_element.idenity}</td>
                     <td>${checkStatus(inner_element.state, inner_key)}</td>
                     <td>
-                        <button class="btn waves-effect modalbtn modal-trigger" data-target="modal1" 
-                        onclick="getPermission(${inner_key})">權限管理</button>
+                        <button class="btn waves-effect modalbtn modal-trigger" data-target="modal1" onclick="getPermission(${inner_key})">權限管理</button>
                     </td>
                 </tr>
                 `;
@@ -81,16 +102,33 @@ $(document).ready(function () {
         $(`#table-content`).html(str);
     }
 
-    // function permissionbtn(val) {
-    // ${permissionbtn(inner_key)};
-    //     console.log(val);
-    //     studentID = val;
-    // }
-
-
-
     function checkStatus(status, key) {
         return status == "未驗證" ? `<a style="cursor: pointer" onclick="addNewCard(${key})">未驗證</a>` : status;
+    }
+
+    function delAccount(key, pass) {
+        console.log(key, pass);
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: `https://xn--pss23c41retm.tw/api/register/${key}`,
+                type: "DELETE",
+                data: JSON.stringify({
+                    password: pass
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-HTTP-Method-Override": "DELETE"
+                },
+                success: function (result) {
+                    console.log(result);
+                    resolve(result);
+                },
+                error: function (error) {
+                    console.log(error);
+                    reject(error.message);
+                }
+            });
+        })
     }
 });
 
@@ -242,7 +280,6 @@ function permission(result, val) {
                     if(confirm("是否要刪除" + e.target.innerText.replace("close", "") + '?')){
                         delRoom(e.target.innerText.replace("close", "").replace(/\\n/, ""), ${val});
                     }
-                    
                 })
                 </script>
             </div>

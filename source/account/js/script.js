@@ -33,11 +33,11 @@ $(document).ready(function () {
                 alert("請先選取帳號");
             } else {
                 var tmp = [];
-                for (var i = 0; i < all.length; i++) {
-                    tmp.push(delAccount(all[i].value, prompt(`請輸入 ${all[i].value} 密碼:`)));
-                }
                 if (!confirm(`確定要刪除${tmp.length}筆帳號?`)) {
                     return;
+                }
+                for (var i = 0; i < all.length; i++) {
+                    tmp.push(delAccount(all[i].value, prompt(`請輸入 ${all[i].value} 密碼:`)));
                 }
                 Promise.all(tmp)
                     .then((val) => {
@@ -46,7 +46,7 @@ $(document).ready(function () {
                         location.reload();
                     })
                     .catch((err) => {
-                        $(`#table-content`).html(`<h4 class="red-text text-darken-2">${err == ""? "伺服器發生問題，請稍後再試":error}</h4>`);
+                        alert(err == ""? "伺服器發生問題，請稍後再試":err);
                     })
             }
         });
@@ -125,7 +125,7 @@ $(document).ready(function () {
                 },
                 error: function (error) {
                     console.log(error);
-                    reject(error.message);
+                    reject(error.responseJSON.message);
                 }
             });
         })

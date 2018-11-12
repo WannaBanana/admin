@@ -95,34 +95,32 @@ $(document).ready(function () {
 });
 
 function addNewCard(key) {
-    // var cardName = prompt("請輸入卡片名稱");
-    // var cardID = prompt("請輸入卡號");
-    // if (cardName == "" || cardID == "") {
-    //     alert("卡片名稱/卡號不得為空");
-    //     return;
-    // }
-    // console.log(cardName, cardID);
-    // $.ajax({
-    //     url: `https://xn--pss23c41retm.tw/api/register/${key}`,
-    //     type: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json"
-    //     },
-    //     data: JSON.stringify({
-    //         "cardName": cardName,
-    //         "cardID": cardID
-    //     }),
-    //     success: function (result) {
-    //         console.log(result);
-    //     },
-    //     error: function (error) {
-    //         console.log(error);
-    //         alert(error.responseJSON.message);
-    //     }
-    // });
-    if (confirm("是否進行認證?")) {
-        validateAccount(key);
+    var cardName = prompt("請輸入卡片名稱");
+    var cardID = prompt("請輸入卡號");
+    if (cardName == "" || cardID == "") {
+        alert("卡片名稱/卡號不得為空");
+        return;
     }
+    console.log(cardName, cardID);
+    $.ajax({
+        url: `https://xn--pss23c41retm.tw/api/register/${key}`,
+        type: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        data: JSON.stringify({
+            "cardName": cardName,
+            "cardID": cardID
+        }),
+        success: function (result) {
+            console.log(result);
+            validateAccount(key);
+        },
+        error: function (error) {
+            console.log(error);
+            alert(error.responseJSON.message);
+        }
+    });
 }
 
 function validateAccount(key) {

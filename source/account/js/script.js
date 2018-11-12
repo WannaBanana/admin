@@ -311,9 +311,9 @@ function permission(result, val) {
 }
 
 function adminBtn(admin, val) {
-    if (admin == true) {
+    if (admin == true || admin == "true") {
         return `<button class="btn waves-effect red" onclick="adminOperate(${val}, 1)">移除管理員</button>`;
-    } else if (admin == false) {
+    } else if (admin == false || admin == "false") {
         return `<button class="btn waves-effect" onclick="adminOperate(${val}, 0)">提升管理員</button>`;
     }
 }

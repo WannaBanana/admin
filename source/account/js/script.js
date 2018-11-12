@@ -46,7 +46,7 @@ $(document).ready(function () {
                         location.reload();
                     })
                     .catch((err) => {
-                        alert(err == ""? "伺服器發生問題，請稍後再試":err);
+                        alert(err == "" ? "伺服器發生問題，請稍後再試" : err);
                     })
             }
         });
@@ -253,16 +253,17 @@ function permission(result, val) {
     }
     for (const key in result) {
         const element = result[key];
-        for (const inner_key in element) {
-            const inner_element = element[inner_key];
-            for (i = 0; i < inner_element.length; i++) {
-                // chipdata += `{ tag: '${inner_element[i]}', },`;
-                chipdata.push({
-                    'tag': inner_element[i].toString()
-                });
-            }
-            console.log(JSON.stringify(chipdata));
-            str += `
+        if (key != "admin") {
+            for (const inner_key in element) {
+                const inner_element = element[inner_key];
+                for (i = 0; i < inner_element.length; i++) {
+                    // chipdata += `{ tag: '${inner_element[i]}', },`;
+                    chipdata.push({
+                        'tag': inner_element[i].toString()
+                    });
+                }
+                console.log(JSON.stringify(chipdata));
+                str += `
             <div class="lineheight">
                 管理學院
                 <div id="m-${val}" class="chips chips-initial">
@@ -299,11 +300,12 @@ function permission(result, val) {
                 <div class="chips other-chips"></div>
             </div>
             `;
-            $(".modal-footer").html(`
+                $(".modal-footer").html(`
             <div class="sendbtn">
                 <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
             </div>
             `);
+            }
         }
     }
     $(`#department`).html(str);

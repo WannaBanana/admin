@@ -35,7 +35,7 @@
     <nav>
         <div class="nav-wrapper px-md-2 bg-gradient-level">
             <a href="./index.html" class="brand-logo">
-                <img class="d-none-sm" src="./img/logo-red.png" width="150px" >
+                <img class="d-none-sm" src="./img/logo-red.png" width="150px">
             </a>
             <a href="#" data-target="myNavBar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
@@ -79,10 +79,20 @@
                         </div>
                     </li>
                 </ul>
+                <br>
+                <div class="waves-effect btn modal-trigger" id="dashboard" data-target="ClassroomModal">Dashboard</div>
             </div>
             <div class="col s12 m9">
                 <div id="msgText" class="col s12" style="margin-bottom: 20px" hidden></div>
                 <div id="allRoom"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DashBoard -->
+    <div id="ClassroomModal" class="modal">
+        <div class="modal-content">
+            <div id="ClassroomDashboard">
             </div>
         </div>
     </div>

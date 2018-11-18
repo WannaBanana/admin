@@ -1,5 +1,6 @@
 $(document).ready(function () {
     M.AutoInit();
+    $('.modal').modal();
 
     var depart;
 
@@ -43,6 +44,7 @@ $(document).ready(function () {
             type: "GET",
             success: function (result) {
                 render(result);
+                Modalrender(result);
             },
             error: function (error) {
                 console.log("error:", error);
@@ -94,23 +96,23 @@ $(document).ready(function () {
                                                     <div class="switch">
                                                         <label>
                                                             門鎖
-                                                            <input id="${key == 441? "openDoor":""}" ${key != 441? "disabled":""} type="checkbox" ${checkDoor(element.equipment.doorLock.lock)}>
-                                                            <span class="lever" id="${key == 441? "openDoorL":""}"></span>
+                                                            <input id="${key == 441 ? "openDoor" : ""}" ${key != 441 ? "disabled" : ""} type="checkbox" ${checkDoor(element.equipment.doorLock.lock)}>
+                                                            <span class="lever" id="${key == 441 ? "openDoorL" : ""}"></span>
                                                             ${element.equipment.doorLock.door}/${element.equipment.doorLock.lock}
                                                         </label>
                                                     </div>
                                                     <div class="switch">
                                                         <label>
                                                             RFID
-                                                            <input type="checkbox" id="${key == 441? "openRfid":""}" ${key != 441? "disabled":""} ${checkDeviceStatus(element.equipment.rfid.state, "rfid")}>
-                                                            <span class="lever" id="${key == 441? "openRfidL":""}"></span>
+                                                            <input type="checkbox" id="${key == 441 ? "openRfid" : ""}" ${key != 441 ? "disabled" : ""} ${checkDeviceStatus(element.equipment.rfid.state, "rfid")}>
+                                                            <span class="lever" id="${key == 441 ? "openRfidL" : ""}"></span>
                                                         </label>
                                                     </div>
                                                     <div class="switch">
                                                         <label>
                                                             玻璃感測器
-                                                            <input type="checkbox" id="${key == 441? "openGlass":""}" ${key != 441? "disabled":""} ${checkDeviceStatus(element.equipment.glassDetect.power, "glass")}>
-                                                            <span class="lever" id="${key == 441? "openGlassL":""}"></span>
+                                                            <input type="checkbox" id="${key == 441 ? "openGlass" : ""}" ${key != 441 ? "disabled" : ""} ${checkDeviceStatus(element.equipment.glassDetect.power, "glass")}>
+                                                            <span class="lever" id="${key == 441 ? "openGlassL" : ""}"></span>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -173,6 +175,24 @@ $(document).ready(function () {
         $('.modal').modal();
     }
 
+    function Modalrender(data) {
+        let str = "";
+        for (const key in data) {
+            console.log(key);
+            if (data.hasOwnProperty(key)) {
+                if (getCookie("space") != "" && (JSON.parse(getCookie("space")))[depart] && (JSON.parse(getCookie("space")))[depart].indexOf(key) != -1) {
+                    const element = data[key];
+                    str += `
+                    <img src="./img/4F.jpg" id="ClassroomPhoto">
+                    ${checkStatusOnModal(element.equipment.doorLock.lock)}
+                    `;
+                }
+            }
+        }
+        $("#ClassroomDashboard").html(str);
+        $('.modal').modal();
+    }
+
     $(document).on('click', '.borrowLog', function (e) {
         // console.log(e.target.dataset.id);
         var id = e.target.dataset.id;
@@ -217,6 +237,18 @@ $(document).ready(function () {
         }
     }
 
+    function checkStatusOnModal(str) {
+        if (str == "上鎖") {
+            return `
+            <span class="circle-orange" id="status"></span>
+            <span class="light-text" id="Textposition">Vacant</span>`;
+        } else {
+            return `
+            <span class="circle-green" id="status"></span>
+            <span class="light-text" id="Textposition">Borrowing</span>`;
+        }
+    }
+
     function checkDoor(str) {
         if (str == "上鎖") {
             doorStatus = 0;
@@ -227,13 +259,13 @@ $(document).ready(function () {
         }
     }
 
-    function checkBorrowTime(){
+    function checkBorrowTime() {
         $.ajax({
             url: `https://xn--pss23c41retm.tw/api/reservation/%E7%AE%A1%E7%90%86%E5%AD%B8%E9%99%A2/441`,
             type: "GET",
             success: function (result) {
                 console.log(result);
-                for(const key in result){
+                for (const key in result) {
                     var element = result[key];
                     for (const inner_key in element) {
                         if (element.hasOwnProperty(inner_key)) {
@@ -241,7 +273,7 @@ $(document).ready(function () {
                             var start = new Date(inner_element.start);
                             var end = new Date(inner_element.end);
                             var now = new Date();
-                            if(start < now && now < end){
+                            if (start < now && now < end) {
                                 console.log(start, now, end);
                                 $("#userLog").html(`
                                 <label>借用人: ${inner_element.name}</label>
@@ -259,9 +291,9 @@ $(document).ready(function () {
         });
     }
 
-    function ISOtoLocal(time){
+    function ISOtoLocal(time) {
         var tmp = new Date(time);
-        return `${tmp.getYear()+1900}/${tmp.getMonth()+1}/${tmp.getDate()} ${tmp.getHours()}:${tmp.getMinutes()}`;
+        return `${tmp.getYear() + 1900}/${tmp.getMonth() + 1}/${tmp.getDate()} ${tmp.getHours()}:${tmp.getMinutes()}`;
     }
 
     $(document).on('click', '#openDoor', function (e) {
